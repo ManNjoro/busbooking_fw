@@ -81,8 +81,10 @@ function get_payment_summary($conn)
 		ON t.id = p.ticket_id
 	JOIN users u
 		ON t.user_id = u.id
+	JOIN buses b
+		ON t.bus_id = b.id
 	JOIN routes r
-		ON t.route_id = r.id";
+		ON b.route_id = r.id";
 	return mysqli_query($conn, $query);
 }
 
