@@ -1,394 +1,205 @@
--- phpMyAdmin SQL Dump
--- version 5.1.1
--- https://www.phpmyadmin.net/
+-- MySQL dump 10.13  Distrib 9.6.0, for Win64 (x86_64)
 --
--- Host: 127.0.0.1
--- Generation Time: May 21, 2022 at 01:50 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.10
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
+-- Host: 127.0.0.1    Database: busbooking_ezfare
+-- ------------------------------------------------------
+-- Server version	9.6.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+SET @MYSQLDUMP_TEMP_LOG_BIN = @@SESSION.SQL_LOG_BIN;
+SET @@SESSION.SQL_LOG_BIN= 0;
 
 --
--- Database: `busbooking_ezfare`
+-- GTID state at the beginning of the backup 
 --
 
--- --------------------------------------------------------
+SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ '11057481-0475-11f1-886c-c465168a4649:1-1505';
 
 --
--- Table structure for table `admin`
+-- Table structure for table `admins`
 --
 
-CREATE TABLE `admin` (
-  `id` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`id`, `username`, `password`) VALUES
-(1, 'admin', 'admin');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `booking`
---
-
-CREATE TABLE `booking` (
-  `id` int(11) NOT NULL,
-  `passenger_name` varchar(255) NOT NULL,
-  `telephone` varchar(255) NOT NULL,
+DROP TABLE IF EXISTS `admins`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `admins` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
-  `boarding_place` varchar(255) NOT NULL,
-  `Your_destination` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `first_name` varchar(50) DEFAULT NULL,
+  `last_name` varchar(50) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `booking`
+-- Dumping data for table `admins`
 --
 
-INSERT INTO `booking` (`id`, `passenger_name`, `telephone`, `email`, `boarding_place`, `Your_destination`) VALUES
-(1, 'chathuranga', '0765906262', 'chathurangapriyadarshana29@gmail.com', 'eheliyagoda', 'Udumaththa'),
-(2, 'chathurangapriyadarshana29@gmail.com', '0765906262', 'chathurangapriyadarshana29@gmail.com', 'eheliyagoda', 'Udumaththa'),
-(3, 'chathurangapriyadarshana29@gmail.com', '0765906262', 'chathurangapriyadarshana29@gmail.com', 'eheliyagoda', 'Udumaththa'),
-(4, 'chathurangapriyadarshana29@gmail.com', '0765906262', 'chathurangapriyadarshana29@gmail.com', 'eheliyagoda', 'Udumaththa'),
-(5, 'chathurangapriyadarshana29@gmail.com', '0765906262', 'chathurangapriyadarshana29@gmail.com', 'eheliyagoda', 'Udumaththa'),
-(6, 'chathurangapriyadarshana29@gmail.com', '0765906262', 'chathurangapriyadarshana29@gmail.com', 'eheliyagoda', 'Udumaththa'),
-(7, 'kamal', '071-333090', 'kamal@gmail.com', 'negombo', 'kegalla');
-
--- --------------------------------------------------------
+LOCK TABLES `admins` WRITE;
+/*!40000 ALTER TABLE `admins` DISABLE KEYS */;
+INSERT INTO `admins` (`id`, `email`, `first_name`, `last_name`, `password`) VALUES (1,'admin@gmail.com','Admin','Faith','12345678');
+/*!40000 ALTER TABLE `admins` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Table structure for table `bus`
+-- Table structure for table `buses`
 --
 
-CREATE TABLE `bus` (
-  `id` int(11) NOT NULL,
-  `Bus_Name` varchar(255) NOT NULL,
-  `Tel` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `buses`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `buses` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `route_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `route_id` (`route_id`),
+  CONSTRAINT `buses_ibfk_1` FOREIGN KEY (`route_id`) REFERENCES `routes` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `bus`
+-- Dumping data for table `buses`
 --
 
-INSERT INTO `bus` (`id`, `Bus_Name`, `Tel`) VALUES
-(2, 'llv0912', '44444'),
-(3, 'llv0912', '78787878'),
-(6, '5656', '5656');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `courses`
---
-
-CREATE TABLE `courses` (
-  `id` int(30) NOT NULL,
-  `course` varchar(100) NOT NULL,
-  `description` text NOT NULL,
-  `level` varchar(150) NOT NULL,
-  `total_amount` float NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `courses`
---
-
-INSERT INTO `courses` (`id`, `course`, `description`, `level`, `total_amount`, `date_created`) VALUES
-(1, 'Course 2', 'Sample', '1', 4500, '2020-10-31 11:01:15');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `fees`
---
-
-CREATE TABLE `fees` (
-  `id` int(30) NOT NULL,
-  `course_id` int(30) NOT NULL,
-  `description` varchar(200) NOT NULL,
-  `amount` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `fees`
---
-
-INSERT INTO `fees` (`id`, `course_id`, `description`, `amount`) VALUES
-(1, 1, 'Tuition', 3000),
-(3, 1, 'sample', 1500);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `payment`
---
-
-CREATE TABLE `payment` (
-  `id` int(11) NOT NULL,
-  `amount` float NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `address` varchar(255) NOT NULL,
-  `city` varchar(255) NOT NULL,
-  `state` varchar(255) NOT NULL,
-  `zip_code` int(6) NOT NULL,
-  `card_name` varchar(255) NOT NULL,
-  `card_number` varchar(16) NOT NULL,
-  `exp_month` varchar(20) NOT NULL,
-  `exp_year` varchar(20) NOT NULL,
-  `cvv` int(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `payment`
---
-
-INSERT INTO `payment` (`id`, `amount`, `name`, `email`, `address`, `city`, `state`, `zip_code`, `card_name`, `card_number`, `exp_month`, `exp_year`, `cvv`) VALUES
-(1, 300, 'Ranasinghe Pedige Chathuranga Priyadarshana Ranasinghe', 'chathurangapriyadarshana29@gmail.com', 'No24,Udumaththa,Eheliyagoda', 'Eheliyagoda', 'india', 70600, 'indigooo', '2222333366665555', 'januray', '2022', 630),
-(2, 900, 'kamal', 'chathurangapriyadarshana29@gmail.com', 'ranasinha', 'Eheliyagoda', '', 0, '', '', '', '', 0),
-(3, 0, 'chathuranga priyadarshana', 'chathurangapriyadarshana29@gmail.com', 'No24,Udumaththa,Eheliyagoda', 'Eheliyagoda', 'india', 70600, 'werr', '1111222233334444', 'gs', '2022', 1234),
-(4, 0, 'chathuranga priyadarshana', 'chathurangapriyadarshana29@gmail.com', 'No24,Udumaththa,Eheliyagoda', 'Eheliyagoda', 'india', 70600, 'ffvfvf', '1111222233334444', 'janurgb', '26', 123),
-(5, 200, 'chathuranga priyadarshana', 'chathurangapriyadarshana29@gmail.com', 'No24,Udumaththa,Eheliyagoda', 'Eheliyagoda', 'india', 70600, 'jorn', '1111222233334444', 'gfggg', '2022', 1234),
-(6, 200, 'chathuranga priyadarshana', 'chathurangapriyadarshana29@gmail.com', 'No24,Udumaththa,Eheliyagoda', 'Eheliyagoda', 'india', 70600, 'jorn', '1111222233334444', 'janray', '2022', 1234),
-(7, 200, 'Ranasinghe Pedige Chathuranga Priyadarshana Ranasinghe', 'chathurangapriyadarshana29@gmail.com', 'No24,Udumaththa,Eheliyagoda', 'Eheliyagoda', 'india', 70600, 'cm', '1111222233334444', 'janu', '2021', 134);
-
--- --------------------------------------------------------
+LOCK TABLES `buses` WRITE;
+/*!40000 ALTER TABLE `buses` DISABLE KEYS */;
+INSERT INTO `buses` (`id`, `name`, `route_id`) VALUES (1,'Tugi',3);
+/*!40000 ALTER TABLE `buses` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `payments`
 --
 
+DROP TABLE IF EXISTS `payments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `payments` (
-  `id` int(30) NOT NULL,
-  `ef_id` int(30) NOT NULL,
-  `amount` float NOT NULL,
-  `remarks` text NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int NOT NULL AUTO_INCREMENT,
+  `ticket_id` int NOT NULL,
+  `amount` int DEFAULT NULL,
+  `receipt` char(36) DEFAULT (uuid()),
+  PRIMARY KEY (`id`),
+  KEY `ticket_id` (`ticket_id`),
+  CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`ticket_id`) REFERENCES `tickets` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `payments`
 --
 
-INSERT INTO `payments` (`id`, `ef_id`, `amount`, `remarks`, `date_created`) VALUES
-(1, 1, 1000, 'sample', '2020-10-31 14:25:35'),
-(2, 1, 500, 'sample 2', '2020-10-31 14:47:15');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `route`
---
-
-CREATE TABLE `route` (
-  `id` int(11) NOT NULL,
-  `via_city` varchar(255) NOT NULL,
-  `destination` varchar(255) NOT NULL,
-  `bus_name` varchar(255) NOT NULL,
-  `departure_date` date NOT NULL,
-  `departure_time` time(6) NOT NULL,
-  `cost` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+LOCK TABLES `payments` WRITE;
+/*!40000 ALTER TABLE `payments` DISABLE KEYS */;
+INSERT INTO `payments` (`id`, `ticket_id`, `amount`, `receipt`) VALUES (1,4,300,'9a84dfe1-1709-11f1-b914-c465168a4649'),(2,2,500,'444bebd6-1754-11f1-b914-c465168a4649'),(3,3,500,'bb7842cf-1754-11f1-b914-c465168a4649');
+/*!40000 ALTER TABLE `payments` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Dumping data for table `route`
+-- Table structure for table `routes`
 --
 
-INSERT INTO `route` (`id`, `via_city`, `destination`, `bus_name`, `departure_date`, `departure_time`, `cost`) VALUES
-(1, 'via Eheliyagoda', 'Avissawella', 'Ez', '2022-05-04', '04:00:00.000000', '200.00'),
-(2, 'Badulla', 'Jaffna', 'llv0912erer', '0000-00-00', '18:30:00.000000', '300.00'),
-(4, 'Rathnapura', 'Jaffna', 'llv0912', '2022-05-05', '00:09:00.000000', '0');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `student`
---
-
-CREATE TABLE `student` (
-  `id` int(30) NOT NULL,
-  `id_no` varchar(100) NOT NULL,
-  `name` text NOT NULL,
-  `contact` varchar(100) NOT NULL,
-  `address` text NOT NULL,
-  `email` varchar(200) NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `routes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `routes` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `via_city` varchar(255) DEFAULT NULL,
+  `destination` varchar(255) DEFAULT NULL,
+  `departure_datetime` datetime DEFAULT NULL,
+  `cost` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `student`
+-- Dumping data for table `routes`
 --
 
-INSERT INTO `student` (`id`, `id_no`, `name`, `contact`, `address`, `email`, `date_created`) VALUES
-(1, '06232014', 'John Smith', '+18456-5455-55', 'Sample Address', 'jsmith@sample.com', '2020-10-31 11:24:42'),
-(2, '1415', 'George Wilson', '+18456-5455-55', 'Sample Address', 'gwilson@sample.com', '2020-10-31 11:29:38');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `student_ef_list`
---
-
-CREATE TABLE `student_ef_list` (
-  `id` int(30) NOT NULL,
-  `student_id` int(30) NOT NULL,
-  `ef_no` varchar(200) NOT NULL,
-  `course_id` int(30) NOT NULL,
-  `total_fee` float NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+LOCK TABLES `routes` WRITE;
+/*!40000 ALTER TABLE `routes` DISABLE KEYS */;
+INSERT INTO `routes` (`id`, `via_city`, `destination`, `departure_datetime`, `cost`) VALUES (1,'Thika','Nairobi','2026-03-11 18:50:00',300),(3,'Lang\'ata','Rongai','2026-03-04 08:30:00',500);
+/*!40000 ALTER TABLE `routes` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Dumping data for table `student_ef_list`
+-- Table structure for table `tickets`
 --
 
-INSERT INTO `student_ef_list` (`id`, `student_id`, `ef_no`, `course_id`, `total_fee`, `date_created`) VALUES
-(1, 2, '2020-654278', 1, 4500, '2020-10-31 12:04:18'),
-(2, 1, '2020-65427823', 1, 4500, '2020-10-31 13:12:13');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `system_settings`
---
-
-CREATE TABLE `system_settings` (
-  `id` int(30) NOT NULL,
-  `name` text NOT NULL,
-  `email` varchar(200) NOT NULL,
-  `contact` varchar(20) NOT NULL,
-  `cover_img` text NOT NULL,
-  `about_content` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `tickets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tickets` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `bus_id` int DEFAULT NULL,
+  `payment_status` enum('P','C','F') DEFAULT 'P',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `bus_id` (`bus_id`),
+  CONSTRAINT `tickets_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `tickets_ibfk_3` FOREIGN KEY (`bus_id`) REFERENCES `buses` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `system_settings`
+-- Dumping data for table `tickets`
 --
 
-INSERT INTO `system_settings` (`id`, `name`, `email`, `contact`, `cover_img`, `about_content`) VALUES
-(1, 'School Fees Payment System', '', '', '', '');
-
--- --------------------------------------------------------
+LOCK TABLES `tickets` WRITE;
+/*!40000 ALTER TABLE `tickets` DISABLE KEYS */;
+INSERT INTO `tickets` (`id`, `user_id`, `bus_id`, `payment_status`) VALUES (1,1,1,'C'),(2,1,1,'P'),(3,1,1,'C'),(4,1,1,'P');
+/*!40000 ALTER TABLE `tickets` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `user_id` bigint(25) NOT NULL,
-  `First_Name` varchar(255) NOT NULL,
-  `Last_Name` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `phone` varchar(12) DEFAULT NULL,
+  `first_name` varchar(50) DEFAULT NULL,
+  `last_name` varchar(50) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `user_id`, `First_Name`, `Last_Name`, `username`, `email`, `password`) VALUES
-(2, 65858844865684, 'andrew', 'Ranasinghe', 'andrew', 'andrew@gmail.com', '1234@'),
-(4, 89258032, 'anju', 'rasanjali', 'anju', 'rasanjali@gmail.com', '12345@'),
-(5, 252154, 'chathuranga', 'priyadarshana', 'kamal', 'chathurangapriyadarshana29@gmail.com', '1234');
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` (`id`, `email`, `phone`, `first_name`, `last_name`, `password`) VALUES (1,'fwambui@gmail.com','0712345678','Faith','Wambui','12345678');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `booking`
---
-ALTER TABLE `booking`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `bus`
---
-ALTER TABLE `bus`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `payment`
---
-ALTER TABLE `payment`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `route`
---
-ALTER TABLE `route`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `admin`
---
-ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `booking`
---
-ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `bus`
---
-ALTER TABLE `bus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `payment`
---
-ALTER TABLE `payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `route`
---
-ALTER TABLE `route`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-COMMIT;
-
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2026-03-04  2:14:52
