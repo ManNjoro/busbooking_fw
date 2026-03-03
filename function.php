@@ -87,6 +87,24 @@ function get_payment_summary($conn)
 }
 
 
+function get_payment_status($status){
+	switch ($status) {
+		case 'P':
+			return "Pending";
+			break;
+		case 'C':
+			return "Complete";
+			break;
+		case 'F':
+			return "Failed";
+			break;
+		
+		default:
+			return "Unknown";
+			break;
+	}
+}
+
 
 function random_num($length)
 {
