@@ -10,21 +10,7 @@ session_start();
 ?>
 
 <?php include("connection.php")?>
-<!--
-<!DOCTYPE html>
-<html>
-<head>
-  <title>admin Panel suraksha</title>
-</head>
-<body>
 
-   <?php// echo "welcome:".  $_SESSION['id']; ?>
-   <a href="adminLogout.php"><button class="btnHome">logout</button></a>
-
-</body>
-</html>
-
--->
 
 
 <!DOCTYPE html>
@@ -54,8 +40,8 @@ session_start();
   }
 
   .sidebar2 {
-    margin-left: 260px;
-    padding: 40px;
+    /* margin-left: 260px; */
+    padding: 70px;
   }
 
   /* Card Container */
@@ -146,10 +132,10 @@ session_start();
 
 
     <li><a href="viewBus.php">Ticket Booking</a></li>
+    <li><a href="myTickets.php">My Tickets</a></li>
     <li><a href="profile.php">Profile</a></li>
     <li><a href="logout.php">logout</a></li>
   <!--  <li><a href="#">Event</a></li>
-    <li><a href="#">About</a></li>
     <li><a href="#">Service</a></li>
     <li><a href="#">Contact</a></li>-->
     </ul>

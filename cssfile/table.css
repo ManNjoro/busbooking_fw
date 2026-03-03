@@ -81,3 +81,43 @@ body {
     right: 80px;
     top: 100px;
 }
+
+.action-btns {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Bootstrap's default danger red */
+    border-color: #dc3545;
+}
+
+.btn-danger:hover, 
+.btn-danger:focus {
+    background-color: #c82333;
+    border-color: #bd2130;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.btn-success {
+    background-color: #5cb85c;
+    border-color: #5cb85c;
+}
+
+.btn-success:hover {
+    background-color: #4cae4c;
+    border-color: #4cae4c;
+    box-shadow: 0 0 0 0.2rem rgba(92, 184, 92, 0.25);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+    box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.25);
+}
