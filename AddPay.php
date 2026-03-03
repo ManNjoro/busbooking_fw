@@ -60,6 +60,10 @@ if(empty($cost) or !is_numeric($cost) or empty($ticket_id) or !is_numeric($ticke
               $stmt->bind_param("ii",$amount, $ticket_id);
 
               $stmt->execute();
+              $query="UPDATE `tickets` SET payment_status='C' where id=$ticket_id";
+
+
+       $query_run=mysqli_query($conn,$query);
                           
                            echo ("<script LANGUAGE='JavaScript'>
                 window.alert('Succesfully added!!!');

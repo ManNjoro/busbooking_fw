@@ -113,12 +113,12 @@ WHERE t.user_id = $user_id";
         <div class="action-btns">
 
             <a class="btn btn-success" 
-            href="AddBooking.php?bus_id=<?php echo $row['bus_id'];?>&route_id=<?php echo $row['route_id'];?>">
+            href="AddPay.php?ticket_id=<?php echo $row['ticket_id'];?>&cost=<?php echo $row['cost'];?>">
             Pay
         </a>
         
         <a class="btn btn-danger" 
-        href="AddBooking.php?bus_id=<?php echo $row['bus_id'];?>&route_id=<?php echo $row['route_id'];?>">
+        href="deleteTicket.php?ticket_id=<?php echo $row['ticket_id'];?>">
         Delete
     </a>
 </div>

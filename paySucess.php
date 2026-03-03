@@ -14,15 +14,6 @@
     <link rel="stylesheet" href="cssfile/paySucess.css">
 
 
-    <style type="text/css">
-        body{/*
-            background-image: url(image/3.jpg);
-            background-attachment: fixed;
-            background-size: cover;
-            background-repeat: no-repeat;*/
-        }
-    </style>
-
 
 </head>
 
@@ -39,11 +30,11 @@
             <div class="alert-content alert">
                 Your Payment is Successfull and thank you for geting ticket from us. 
             </div>
-            <div class="alert"><a href="viewBus.php">
+            <div class="alert"><a href="myTickets.php">
                 <button type="button" class="button">
                     <i class="fa-solid fa-eye"></i>
                     Ok
-                </button></a><a href="viewBus.php">
+                </button></a><a href="myTickets.php">
                 <button type="button" onclick="Close()" class="dismiss-btn" id="close">Dismiss</button></a>
             </div>
         </div>
