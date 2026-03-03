@@ -112,10 +112,16 @@ WHERE t.user_id = $user_id";
         <td>
         <div class="action-btns">
 
-            <a class="btn btn-success" 
-            href="AddPay.php?ticket_id=<?php echo $row['ticket_id'];?>&cost=<?php echo $row['cost'];?>">
-            Pay
-        </a>
+            <a 
+  class="btn <?php echo $row['payment_status'] == 'C' ? 'btn-secondary' : 'btn-success'; ?>" 
+  <?php if ($row['payment_status'] != 'C'): ?>
+    href="AddPay.php?ticket_id=<?php echo $row['ticket_id']; ?>&cost=<?php echo $row['cost']; ?>"
+  <?php else: ?>
+    href="#" onclick="return false;" style="pointer-events: none; cursor: not-allowed;"
+  <?php endif; ?>
+>
+  <?php echo $row['payment_status'] == 'C' ? 'Paid' : 'Pay'; ?>
+</a>   
         
         <a class="btn btn-danger" 
         href="deleteTicket.php?ticket_id=<?php echo $row['ticket_id'];?>">
