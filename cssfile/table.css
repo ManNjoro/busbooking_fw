@@ -1,0 +1,61 @@
+.table-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  table thead {
+    background: #2c3e50;
+    color: white;
+  }
+
+  table th {
+    padding: 15px;
+    font-weight: 500;
+    text-align: left;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+
+  table td {
+    padding: 18px 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #555;
+  }
+
+  table tbody>tr:hover {
+    background-color: #e6f2fd;
+    transition: 0.2s ease;
+  }
+
+/* Other styles associated with a page with a table */
+body {
+    background: #f4f6f9;
+  }
+
+  .adminTopic {
+    font-size: 28px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 25px;
+  }
+
+  .sidebar2 {
+    /* margin-left: 260px; */
+    padding: 70px;
+    /* margin-top: 30px; */
+  }
+
+   @media (max-width: 992px) {
+    .sidebar2 {
+      margin-left: 0;
+      padding: 20px;
+    }
+  }
