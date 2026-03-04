@@ -1,214 +1,222 @@
-<?php 
+<?php
 
-    session_start();
-
+session_start();
+include("connection.php");
+include("function.php");
 ?>
-<?php include("connection.php")?>
-<?php include("function.php")?>
-<!--
-<!DOCTYPE html>
-<html>
-<head>
-    <title>admin Panel suraksha</title>
-</head>
-<body>
 
-   <?php// echo "welcome:".  $_SESSION['id']; ?>
-   <a href="adminLogout.php"><button class="btnHome">logout</button></a>
-
-</body>
-</html>
-
--->
 
 
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Routes adding</title>
   <!--cdn icon library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="cssfile/sidebar.css">
-<link rel="stylesheet" href="cssfile/signUp.css">
-    <style type="text/css">
+  <link rel="stylesheet" href="cssfile/sidebar.css">
+  <link rel="stylesheet" href="cssfile/signUp.css">
+  <style>
+    body {
+      background: #f4f6f9;
+      font-family: "Segoe UI", Roboto, sans-serif;
+    }
 
-            body{
+    .sidebar2 {
+      margin-left: 250px;
+      padding: 60px 40px;
+    }
 
-          background-image: url("image/20.jpg");
-          background-position: center;
-          background-size: cover;
-          height: 700px;
-          background-repeat: no-repeat;
-      background-attachment: fixed;
+    .page-header {
+      margin-bottom: 30px;
+    }
 
-        }
-        .adminTopic{
-            text-align: center;
-            color: #fff;
-            
-
-        }
-    .form_wrap .submit_btn:hover{
-
-      color:#fff;
+    .page-header h1 {
+      font-size: 26px;
       font-weight: 600;
-
+      color: #2c3e50;
     }
-    .idclass{
 
+    /* Card Container */
+    .form-card {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      max-width: 600px;
+    }
+
+    /* Input Styling Override */
+    .form_wrap input[type="text"],
+    .form_wrap select {
       width: 100%;
-      border-radius: 3px;
-      border: 1px solid #9597a6;
-      padding: 10px;
-      outline: none;
-      color: black;
-
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #dcdfe6;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      background: #fff;
     }
 
+    .form_wrap input:focus,
+    .form_wrap select:focus {
+      border-color: #3498db;
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+      outline: none;
+    }
 
+    .form_wrap label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 6px;
+    }
 
+    /* Submit Button */
+    .form_wrap .submit_btn {
+      width: 100%;
+      background: #3498db;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-    </style>
+    .form_wrap .submit_btn:hover {
+      background: #2980b9;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 992px) {
+      .sidebar2 {
+        margin-left: 0;
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
+
 <body>
   <input type="checkbox" id="check">
 
   <label for="check">
-<i class="fa fa-bars" id="btn"></i>
-<i class="fa fa-times" id="cancle"></i>
+    <i class="fa fa-bars" id="btn"></i>
+    <i class="fa fa-times" id="cancle"></i>
 
 
   </label>
   <div class="sidebar">
-<header><img src="image/Re.png">
-<p><?php echo $_SESSION['email']; ?></p>
-</header>
-<ul>
+    <header><img src="image/Re.png">
+      <p><?php echo $_SESSION['email']; ?></p>
+    </header>
+    <ul>
 
 
-     <li><a href="adminDash.php">Manage Routes</a></li>
-    <li><a href="ManagesBuses.php">Manage Buses</a></li>
-    <li><a href="BookingManage.php">Booking People</a></li>
-    <li><a href="PaymentManage.php">Transaction</a></li>
-    <li><a href="adminLogout.php">logout</a></li>
-  <!--  <li><a href="#">Event</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Service</a></li>
-    <li><a href="#">Contact</a></li>-->
+      <li><a href="adminDash.php">Manage Routes</a></li>
+      <li><a href="ManagesBuses.php">Manage Buses</a></li>
+      <li><a href="BookingManage.php">Booking People</a></li>
+      <li><a href="PaymentManage.php">Transaction</a></li>
+      <li><a href="adminLogout.php">logout</a></li>
+
     </ul>
- <!--  <li>
-      <div class="social-links">
-        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-        <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="fa fa-youtube"></i></a>
-        
-      </div>
-    </li>-->
-   
-
-</div>
 
 
 
-<div class="sidebar2">
+  </div>
 
 
-        <?php 
-        $routes = get_routes($conn);
+
+  <div class="sidebar2">
 
 
-  if(isset($_POST['AddBus'])){
-
-     
-       //$id=$_POST['id'];
-       $nameOFbus=$_POST['bus_name'];
-       $route_id=$_POST['route_id'];
-       
-    
-
-    
+    <?php
+    $routes = get_routes($conn);
 
 
-       if($conn->connect_error)
-          {
-            die('Connection Failed :'.$conn->connect_error);
-          }
-          else
-          {
+    if (isset($_POST['AddBus'])) {
 
 
-              $stmt=$conn->prepare("INSERT INTO buses(name,route_id) VALUES(?,?)");
-              //table3 is the table name//
+      //$id=$_POST['id'];
+      $nameOFbus = $_POST['bus_name'];
+      $route_id = $_POST['route_id'];
 
-              $stmt->bind_param("si", $nameOFbus,$route_id);
+      if ($conn->connect_error) {
+        die('Connection Failed :' . $conn->connect_error);
+      } else {
 
-              $stmt->execute();
-              
-                                 echo ("<script LANGUAGE='JavaScript'>
+
+        $stmt = $conn->prepare("INSERT INTO buses(name,route_id) VALUES(?,?)");
+        //table3 is the table name//
+
+        $stmt->bind_param("si", $nameOFbus, $route_id);
+
+        $stmt->execute();
+
+        echo ("<script LANGUAGE='JavaScript'>
                       window.alert('Succesfully Bus Added!!!');
                       window.location.href='ManagesBuses.php';
                       </script>");
-               
-
-
-              
-              $stmt->close();
-              $conn->close();
-              }
-                
-          
-      }     
-  
-
-   ?>
 
 
 
 
-          <div class="wrapper">
-  <div class="registration_form">
-    <div class="title">
-      Bus adding
+        $stmt->close();
+        $conn->close();
+      }
+    }
+
+
+    ?>
+
+
+
+
+    <div class="page-header">
+      <h1>Add New Bus</h1>
     </div>
 
-    <form action="#" method="POST">
-      <div class="form_wrap">
-        
-        <div class="input_wrap">
-          <label for="title">Bus Name</label>
-          <input type="text" id="title" name="bus_name" placeholder="Bus Name" required>
-        </div>
+    <div class="form-card">
+      <div class="registration_form">
 
+        <form action="#" method="POST">
+          <div class="form_wrap">
 
-        <div class="input_wrap">
-          <label for="route">Route</label>
-          <select name="route_id" id="route" required>
-            <option value="">--Select Route--</option>
-            <?php
-             while ($row=mysqli_fetch_array($routes,MYSQLI_ASSOC)){
-              echo '<option value="' . $row['id'] . '">' . $row['via_city'] . ' - ' . $row['destination'] . '</option>';   
-             }
-             ?>
-          </select>
-        </div>
+            <div class="input_wrap">
+              <label>Bus Name</label>
+              <input type="text" name="bus_name" placeholder="Enter bus name" required>
+            </div>
 
-        <div class="input_wrap">
-          <input type="submit" value="Add Bus Now" class="submit_btn" name="AddBus">
+            <div class="input_wrap">
+              <label>Select Route</label>
+              <select name="route_id" required>
+                <option value="">-- Select Route --</option>
+                <?php
+                while ($row = mysqli_fetch_array($routes, MYSQLI_ASSOC)) {
+                  echo '<option value="' . $row['id'] . '">' . $row['via_city'] . ' - ' . $row['destination'] . '</option>';
+                }
+                ?>
+              </select>
+            </div>
 
-        </div>
+            <div class="input_wrap">
+              <input type="submit" value="Add Bus" class="submit_btn" name="AddBus">
+            </div>
 
-
+          </div>
+        </form>
 
       </div>
-    </form>
+    </div>
+
+
+
+
   </div>
-</div>
-
-
-
-
-</div>
 
 </body>
+
 </html>
