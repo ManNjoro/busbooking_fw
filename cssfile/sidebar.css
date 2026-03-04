@@ -40,7 +40,7 @@ label #btn {
   left: -250px;
   width: 250px;
   height: 100%;
-  background: #042331;
+  background: #1f2937;
   transition: all 0.5s ease;
   float: left;
   
@@ -91,7 +91,11 @@ label #btn {
   margin-right: 16px;
 }
 /* hover effect */
-ul li:hover a {
+/* ul li:hover a {
+  padding-left: 50px;
+} */
+.sidebar ul a:hover {
+  background: #374151;
   padding-left: 50px;
 }
 /* Social Links */
