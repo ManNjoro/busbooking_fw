@@ -72,7 +72,7 @@ include("function.php");
 
     <h1 class="adminTopic">Manage Buses</h1>
 
-    <a class="btn btn-right" href="AddBus.php">+ Add Bus</a><br/>
+    <a class="btn btn-right" href="AddBus.php">+ Add Bus</a><br />
 
 
 
@@ -88,8 +88,7 @@ include("function.php");
     <tr>
     <th>Bus Name</th>
     <th>Route</th>
-    <th>Update</th>
-    <th>Delete</th>
+    <th>Actions</th>
    
        </tr>
        </thead>
@@ -108,26 +107,15 @@ include("function.php");
 
       <td>
 
+        <div class="action-btns">
 
-        <a class="btn" href="UpdateBus.php?id=<?php echo $row['id']; ?>">
-
-
-
-
-          Update
-
-        </a>
-
-
-      </td>
-      <td>
-
-
-        <a class="btn" href="deleteBus.php?id=<?php echo $row['id']; ?>">
-
-          Delete
-
-        </a>
+          <a class="btn btn-success" href="UpdateBus.php?id=<?php echo $row['id']; ?>">
+            Update
+          </a>
+          <a class="btn btn-danger" href="deleteBus.php?id=<?php echo $row['id']; ?>">
+            Delete
+          </a>
+        </div>
 
       </td>
       </tr>

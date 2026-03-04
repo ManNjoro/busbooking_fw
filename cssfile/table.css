@@ -85,7 +85,8 @@ body {
 .action-btns {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 10px;
+    /* justify-content: space-between; */
 }
 
 .btn-danger {

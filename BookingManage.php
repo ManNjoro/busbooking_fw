@@ -86,7 +86,7 @@ JOIN routes r
     <th>Bus</th>
     <th>Route</th>
     <th>Payment Status</th>
-    <th>Update</th>
+    <th>Action</th>
 
     
    
@@ -117,7 +117,7 @@ JOIN routes r
       <td>
 
 
-        <a class="btn" href="updateBooking.php?id=<?php echo $row['ticket_id']; ?>">
+        <a class="btn btn-success" href="updateBooking.php?id=<?php echo $row['ticket_id']; ?>">
 
 
 
