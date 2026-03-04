@@ -26,10 +26,10 @@ if($conn->connect_error)
           {
 
 
-              $stmt=$conn->prepare("INSERT INTO tickets(user_id,route_id,bus_id) VALUES(?,?,?)");
+              $stmt=$conn->prepare("INSERT INTO tickets(user_id,bus_id) VALUES(?,?)");
               //table3 is the table name//
 
-              $stmt->bind_param("iii",$user_data['id'],$route_id, $bus_id);
+              $stmt->bind_param("ii",$user_data['id'], $bus_id);
 
               $stmt->execute();
               $ticket_id = $conn->insert_id;

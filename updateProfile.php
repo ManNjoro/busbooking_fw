@@ -3,15 +3,13 @@
 <?php 
 
 
-    session_start()
+    session_start();
+  include("connection.php");
+    include("function.php");
 
+    $user_data = check_login($conn);
 
  ?>
-<?php 
-
-    include("connection.php");
-
-?>
 
 
 <!DOCTYPE html>
@@ -69,19 +67,17 @@ body{
 
   <?php 
 
-
-      
+      $id = $user_data['id'];
+      $phone_db = $user_data['phone'];
+      $fname_db = $user_data['first_name'];
+      $lname_db = $user_data['last_name'];
 
        if(isset($_POST['updateprofile'])){
-
-       $id=$_POST['id'];
        $fname=$_POST['fname'];
        $lname=$_POST['lname'];
-       $email=$_POST['email'];
-       $username=$_POST['user_name'];
-       $password=$_POST['password'];
+       $phone=$_POST['phone'];
 
-       $query="UPDATE `users` SET First_Name='$fname',Last_Name='$lname',email='$email' ,username='$username',password='$password' where id=$id";
+       $query="UPDATE `users` SET first_name='$fname',last_name='$lname', phone='$phone' where id='$id'";
 
 
        $query_run=mysqli_query($conn,$query);
@@ -137,32 +133,23 @@ body{
         <div class="input_grp">
           <div class="input_wrap">
             <label for="fname">First Name</label>
-            <input type="text" id="fname" name="fname" placeholder="First Name" required>
+            <input type="text" value="<?php echo $fname_db;?>" id="fname" name="fname" placeholder="First Name" required>
           </div>
 
           <div class="input_wrap">
             <label for="lname">Last Name</label>
-            <input type="text" id="lname" name="lname" placeholder="Last Name" >
+            <input type="text" value="<?php echo $lname_db;?>" id="lname" name="lname" placeholder="Last Name" >
           </div>
         </div>
 
-        <div class="input_wrap">
-          <label for="title">Id</label>
-          <input type="number" id="title" name="id" class="idclass" value="<?php echo $_GET['id'];?>">
-        </div>
+       
 
+        
         <div class="input_wrap">
-          <label for="email">Email Address</label>
-          <input type="text" id="email" name="email" placeholder="E-mail" required>
+          <label for="phone">Phone</label>
+          <input min="0" value="<?php echo $phone_db;?>" type="number" id="phone" name="phone" placeholder="0712345678" required>
         </div>
-        <div class="input_wrap">
-          <label for="uname">Username</label>
-          <input type="text" id="uname" name="user_name" placeholder="Username" required>
-        </div>
-        <div class="input_wrap">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" placeholder="password" required>
-        </div>
+        
         
        
         <div class="input_wrap">

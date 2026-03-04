@@ -1,10 +1,10 @@
-<?php 
+<?php
 session_start();
 
-    include("connection.php");
-    include("function.php");
+include("connection.php");
+include("function.php");
 
-    $user_data = check_login($conn);
+$user_data = check_login($conn);
 
 ?>
 
@@ -14,429 +14,228 @@ session_start();
 <title>Online Bus Ticket System</title>
 <!--<link rel="stylesheet" href="css/profile.css"/>-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <head>
 
-  <style type="text/css">
-    /* common part */
-*{
-    padding: 0;
+  <style>
+  * {
     margin: 0;
-  
-    list-style: none;
+    padding: 0;
     box-sizing: border-box;
-}
-
-/* body  */
-body{
-  font-family: monospace;
-  background-image: url(image/4.jpg);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
-/* navigetion bar css code */
-nav{
-  width:100%;
-  height: 80px;
-  background-color:#0B0B3B;
-  
-}
-/*a:nth-child(1)*/
-.logo{
-  color: rgb(253, 252, 252);
-  font-style:oblique;
-   font-size: 35px;
-   line-height: 80px;
-   padding: 0px;
-   font-weight: bold;
-   float: left;
-} 
-
-
-nav ul {
-  float:left;
-  margin-left:20px ;
-  
-  
-}
-nav ul li{
-  display: inline-block;
-  line-height: 80px;
-  margin: 0 5px;
-  
- 
-}
-nav ul li a {
-  text-decoration: none;
-  font-size: 17px;
-  text-transform: uppercase;
-  /*color:white;*/
-  /*padding: 7px 13px;*/
-
-  border-radius: 15px;           
-}
-/*a.active,a:hover{
-  background-color: #1b9bff;
-  transition: .5s;
-}*/
-nav ul li a.animation{
-  position: absolute;
-  
-
-
-}
-a:nth-child(1){
-  padding: 7px 13px;
-}
-nav.start-home,a:nth-child(1):hover,
-a:nth-child(2){
-  padding: 7px 13px;
-}
-nav.start-home,a:nth-child(2):hover,
-a:nth-child(3){
-  padding: 7px 13px;
-}
-nav.start-home,a:nth-child(3):hover,
-a:nth-child(4){
-  padding: 7px 13px;
-}
-#sign{
-
-  margin-left: 600px;
-  padding-left: 400px 400px;
-  
-}
-
-/* body part my account css code */
-.usern{
-  font-size:25px;
-  font-family: Arial;
- /* width: 15%;
-  height: 15%;*/
-  margin-top:20px;
-  
-  left: 50%;
-  padding-left: 65px;
-
-  width: 45%;
-}
-.wrapper{
-  position: absolute;
-  top: 50%;
-  left: 34%;
-  height:60%;
-  margin-left:170px ;
-  border-radius: 15px;     
-  transform: translate(-50%,-50%);
-  width: 60%;
-  display: flex;
-  /*box-shadow: 20px 20px 30px  30px rgba(200, 180, 255, 0.29);*/
-  box-shadow: -15px -15px 15px  rgba(255, 255, 255, 0.2),
-  15px 15px 15px  rgba(0, 0, 0, 0.1),
-  inset -5px -15px 15px  rgba(255, 255, 255, 0.2),
-  inset 5px 5px 5px  rgba(0, 0, 0, 0.2);
-
-
-
-  
-}
-.wrapper .left{
-  width: 30%;
-  background:#3A5795; 
-  padding: 30px 25px;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  text-align: center;
-  color: #fff;
-  border-radius: 15px;     
-}
-
-.wrapper .left img{
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-.right{
-  width: 80%;
-  left: 10%;
-  margin-top:46px;
-  margin-right:auto;
-  margin-left:auto;
-  /*background-color: rgba(0, 0, 0, 1.0);*/
-  color: #fff;
-  padding: 0px 200px;
-  position: relative;
-  font-size: 15px;
-}
-hr{
-  border:1px solid black;
-  width: 50%;
-  
-
-}
-.btn1{
-  margin-left: 90px;
-  padding: 5px;
-  width: 10%;
-  background-color:#6e83b3;
-  border: none;
-  border-radius: 7px;
-  color: white;
-  
-
-}
-/*.but1,:active{
-  color: white;
-  color:#1b9bff;
-  transition: .5s;}*/
-
-  .btn1:hover{
-    color: rgb(235, 235, 235);
-    background-color: rgb(85, 149, 179);
+    font-family: "Segoe UI", Roboto, sans-serif;
   }
-.btn2{
-  margin-left: 90px;
-  padding: 5px;
-  width: 10%;
-  background-color:#F9522E;
-  border: none;
-  color: white;
-  border-radius: 7px;
 
-}
-.btn3{
-  margin-left: 10px;
-  padding: 5px;
-  width: 10%;
-  background-color:#F9522E;
-  border: none;
-  color: white;
-  border-radius: 7px;
+  body {
+    background: #f4f6f9;
+  }
 
-}
-.btn3:hover{
-  background-color: orange;
-  cursor: pointer;
-}
-.btn4{
-  background-color:#F9522E;
-  border: none;
-  color: white;
-  border-radius: 7px;
-  height: 10%;
-  padding: 5px;
+  /* Greeting */
+  .usern {
+    padding: 30px 60px 0 60px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #2c3e50;
+  }
 
+  /* Main Layout */
+  .wrapper {
+    display: flex;
+    gap: 30px;
+    padding: 30px 60px;
+  }
 
-}
-.btn4:hover{
-  background-color: orange;
-  cursor: pointer;
-}
-.data{
-     width: 50%;
+  /* Left Card */
+  .left {
+    width: 280px;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 30px 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    text-align: center;
+  }
 
+  .left img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 4px solid #3498db;
+  }
 
-}
+  /* Right Card */
+  .right {
+    flex: 1;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 30px 40px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  }
 
-.bu{
-  margin-top: 50px;
-  padding: 30px 355px; 
-  
-}
-/*.nxdiv{
-  width: 530px;
-  height: 390px;
-  margin-left: 60%;
-  margin-top:-190px;
-  /*margin-top:46px;
-  margin-right:auto;
-  margin-left: auto;*/
-  
- /* background-color:#c0c0e9;*/
-  
-  /*padding: 0px 200px;
-  position: relative;*/
-  /*font-size: 15px;
+  .right h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #2c3e50;
+    font-weight: 600;
+  }
 
-}*/
+  hr {
+    border: none;
+    height: 1px;
+    background: #e0e0e0;
+    margin-bottom: 20px;
+  }
 
-/*.bu,button{
-  background-color:#637BAD;*/
-  /*margin-right:5px;*/
-  /*width: 50px;
-  height: 30px;*/
-  /*font-size: 12px;
-  padding-left: 0px;
-  margin-top:10px ;
-  margin-left: 250px;
-  font-family:"arial";
-  border-radius: 7px;
-  border-style:solid ;
-  background-color:#637BAD;
-  border-width: 2px;
-  border: none;
-  color: white;*/
+  .info-group {
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #555;
+  }
 
-  
+  .info-label {
+    font-weight: 600;
+    color: #2c3e50;
+  }
 
+  /* Buttons */
+  .btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 5px 5px 0 0;
+  }
 
-/* footer css code */
-/*.footer{
-    
-    position:fixed;
-    bottom: 0;    
-    width: 100%;
-    height: 20%;
-    background-color:#0B0B3B;
-}
+  .btn-primary {
+    background: #3498db;
+    color: white;
+  }
 
-.container,{
-  margin-left: 25%;
-  margin-top: 7px;
-  margin-bottom: 500px;
-  width:100%;
-  height: 80px;
-  color: white;
-}
-h2{
-  margin-left: 25%;
-  margin-top: 7px;
-  margin-bottom: 500px;
-  width:100%;
-  height: 80px;
-  color: white;
+  .btn-primary:hover {
+    background: #2980b9;
+  }
 
-}
-*/
-/*
-.row{
-  display: flex;
-  flex-wrap: wrap;
-}
+  .btn-danger {
+    background: #e74c3c;
+    color: white;
+  }
 
-ul{
-  list-style: none;
-}
-.footer-col{
+  .btn-danger:hover {
+    background: #c0392b;
+  }
 
-  color: white;
-  text-align: center;
-  
+  .btn-secondary {
+    background: #95a5a6;
+    color: white;
+  }
 
-}
-/*.footer-col1{
-  color: white;
-  text-align: center;
+  .btn-secondary:hover {
+    background: #7f8c8d;
+  }
 
-}*/
+  .btn-link {
+    background: #2ecc71;
+    color: white;
+  }
 
-.focl{
-  background-color: #0B0B3B;
-  margin-top: 100px;/*maneg footer top */
-  text-align: center;
+  .btn-link:hover {
+    background: #27ae60;
+  }
 
-  width: 50%px;
-  height:150px ;
+  /* Responsive */
+  @media (max-width: 992px) {
+    .wrapper {
+      flex-direction: column;
+      padding: 20px;
+    }
 
-}
-#imf{
-  color: white;
-  border: 1px solid #ccc;
-  padding-bottom: 5px ;
-  padding-right: 5px ;
-  padding-top: 5px;
-  padding-left: 5px;
-  margin-top: 10px;
-}
-.mr{
-  margin: auto;
-  width: 28%;
-
-}
-.list{
-  
-  padding: 1PX;
-  overflow: hidden;
-  margin-top: 10px;
-  list-style-type: none;
-  
-}
-li.menu{
-float: left;
-padding: 5px;
-margin: auto;
-}
-li a{
-  border-radius: 15px;
-  color: white;
-  display: inline;
-  text-decoration: none;
-}
-li a:hover{
-  color: white;
-  background-color:#1b9bff;
-  transition: .5s;
-
-}
-.fla{
-  color: white;
-}
-
-
-
-
-
-  </style>
-<link rel="stylesheet" href="cssfile/sidebar.css">
+    .usern {
+      padding: 20px;
+    }
+  }
+</style>
+  <link rel="stylesheet" href="cssfile/sidebar.css">
 </head>
-<body > 
 
-
-  
-       
-  
-          <!-- body part my account code -->
-          
-          <div class="usern"><b><font color="#fff"> Hello <?php echo $user_data['first_name'];?></font></b></div>
-            <div class="wrapper">
-              <div class="left">
-                  <img src="image/Re.png"alt="user" width="200">
-                  <button class="btn4">Upload image </button><br>
-                  <br>
-                  <a href="viewBus.php"><button class="btn4">Home </button></a>
-              </div>
-              </div>
+<body>
 
 
 
-<!--information-->
-        <div class="right">
 
-                  
-           <h3>Account Information</h3><hr/><br/>  
-                <p>Email:- <?php echo $user_data['email'];?> </p>
-                <br>
-                <p>First name:-<?php echo $user_data['first_name'];?></p><br>
-                <p>Last name:-<?php echo $user_data['last_name'];?></p><br>
-                
-                <h3>LOGOUT & SECURITY</h3><hr/><br>
-                <br><a href="updateProfile.php?id=<?php echo $user_data['id'];?>">
-                <button class="btn3">Update</button></a>
-                <a href="logout.php">
-                <button class="btn3">Logout</button></a>
-                <a href="deleteProfile.php?id=<?php echo $user_data['id'];?>">
-                <button class="btn3">Delete</button></a>
-         </div>
-          <!--
-         <div class="nxdiv">
-           <h3>Security offtion</h3>
-           <p>password:- <input type="password"></p>
-                
 
-         </div>-->
-                  
-                 
-             
-             
-            
+  <!-- body part my account code -->
+
+  <!-- <div class="usern">
+  Hello <?php echo $user_data['first_name']; ?>
+</div> -->
+
+<div class="wrapper">
+
+  <!-- Left Profile Card -->
+  <div class="left">
+    <img src="image/Re.png" alt="user">
+
+    <button class="btn btn-secondary">Upload Image</button>
+    <br><br>
+    <a href="viewBus.php">
+      <button class="btn btn-link">Home</button>
+    </a>
+  </div>
+
+  <!-- Right Information Card -->
+  <div class="right">
+
+    <h3>Account Information</h3>
+    <hr>
+
+    <div class="info-group">
+      <span class="info-label">Email:</span>
+      <?php echo $user_data['email']; ?>
+    </div>
+
+    <div class="info-group">
+      <span class="info-label">First Name:</span>
+      <?php echo $user_data['first_name']; ?>
+    </div>
+
+    <div class="info-group">
+      <span class="info-label">Last Name:</span>
+      <?php echo $user_data['last_name']; ?>
+    </div>
+
+    <div class="info-group">
+      <span class="info-label">Phone:</span>
+      <?php echo $user_data['phone']; ?>
+    </div>
+
+    <br>
+    <h3>Security & Actions</h3>
+    <hr>
+
+    <a href="updateProfile.php">
+      <button class="btn btn-primary">Update Profile</button>
+    </a>
+
+    <a href="logout.php">
+      <button class="btn btn-secondary">Logout</button>
+    </a>
+
+    <a href="deleteProfile.php ?>">
+      <button class="btn btn-danger">Delete Account</button>
+    </a>
+
+  </div>
+
+</div>
+
+
+
+
+
+
 </body>
+
 </html>

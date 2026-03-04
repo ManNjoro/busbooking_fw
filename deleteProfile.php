@@ -1,17 +1,13 @@
 <?php
 
-include 'connection.php';
+include('connection.php');
+include('function.php');
 
-$ID = $_GET['id'];
+$user_data = check_login($conn);
+
+$ID = $user_data['id'];
 $sql = " DELETE FROM `users` WHERE id = $ID " ;
 $query = mysqli_query($conn,$sql);
-
-
-
-
-    //echo "Deleted!!!!";
-
-	//header("location:pay.php "<script>alert("hellooo");</script>");
 
 
   echo ("<script LANGUAGE='JavaScript'>
